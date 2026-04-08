@@ -1,0 +1,142 @@
+# =============================================================================
+# docker-compose.yml — NN Auth System (Kotlin Edition)
+# ¿Qué? Orquestación de todos los servicios del proyecto con Docker Compose.
+# ¿Para qué? Levantar el entorno completo (BD + BE + FE + correo) con un solo
+#            comando, garantizando que todos los desarrolladores usen la misma
+#            configuración.
+# ¿Impacto? Sin este archivo, cada desarrollador tendría que instalar y
+#           configurar PostgreSQL, el backend y el frontend manualmente.
+#           Con él: `docker compose up -d` y todo está listo.
+# =============================================================================
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # BASE DE DATOS — PostgreSQL 17
+  # ¿Qué? Contenedor con la base de datos relacional del sistema.
+  # ¿Para qué? Almacenar usuarios, tokens y toda la información persistente.
+  # ¿Impacto? Sin la BD, el backend no puede arrancar.
+  # ---------------------------------------------------------------------------
+  db:
+    image: postgres:17-alpine
+    container_name: nn_auth_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nn_user
+      POSTGRES_PASSWORD: nn_password
+      POSTGRES_DB: nn_auth_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - nn_auth_data:/var/lib/postgresql/data
+    networks:
+      - nn_auth_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nn_user -d nn_auth_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # BACKEND — Kotlin + Spring Boot 3.x (Tomcat embebido en puerto 8080)
+  # ¿Qué? Contenedor con la API REST del sistema de autenticación.
+  # ¿Para qué? Exponer los endpoints de registro, login, cambio de contraseña
+  #            y recuperación de contraseña.
+  # ¿Impacto? Sin el backend, el frontend no tiene API a la que llamar.
+  # Diferencia con proyecto-be-fe: FastAPI/Uvicorn corría en puerto 8000;
+  # Spring Boot / Tomcat corre en puerto 8080.
+  # ---------------------------------------------------------------------------
+  be:
+    build:
+      context: ./be
+      dockerfile: Dockerfile
+    container_name: nn_auth_be
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # Conexión a PostgreSQL — apunta al servicio 'db' de este compose
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/nn_auth_db
+      SPRING_DATASOURCE_USERNAME: nn_user
+      SPRING_DATASOURCE_PASSWORD: nn_password
+
+      # JWT — cambiar SECRET en producción (mínimo 32 caracteres)
+      JWT_SECRET: dev-secret-key-change-in-production-min-32-chars
+      JWT_EXPIRATION_MS: 900000       # 15 minutos
+      JWT_REFRESH_EXPIRATION_MS: 604800000  # 7 días
+
+      # CORS — URL del frontend
+      FRONTEND_URL: http://localhost:3000
+
+      # Email — apunta al servicio 'mailpit' de este compose
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+
+      # Entorno — controla Swagger UI (habilitado solo en development)
+      APP_ENVIRONMENT: development
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - nn_auth_network
+
+  # ---------------------------------------------------------------------------
+  # FRONTEND — React + Vite + TypeScript, servido por Nginx
+  # ¿Qué? Contenedor con la SPA compilada y servida por Nginx.
+  # ¿Para qué? Entregar la interfaz de usuario del sistema de auth.
+  # ¿Impacto? El puerto 3000 es donde los usuarios acceden al sistema.
+  # ---------------------------------------------------------------------------
+  fe:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+      args:
+        # URL de la API — apunta al backend Kotlin (puerto 8080, no 8000)
+        VITE_API_URL: http://localhost:8080
+    container_name: nn_auth_fe
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - be
+    networks:
+      - nn_auth_network
+
+  # ---------------------------------------------------------------------------
+  # MAILPIT — Capturador de emails para desarrollo
+  # ¿Qué? Servidor SMTP falso que captura todos los emails enviados.
+  # ¿Para qué? Ver los emails de verificación y recuperación de contraseña
+  #            sin necesitar una cuenta de correo real.
+  # ¿Impacto? Sin Mailpit, el backend no puede enviar emails de verificación
+  #           y el flujo de registro no podría completarse en desarrollo.
+  # UI: http://localhost:8025
+  # SMTP: localhost:1025
+  # ---------------------------------------------------------------------------
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: nn_auth_mailpit
+    restart: unless-stopped
+    ports:
+      - "8025:8025"   # Interfaz web para ver los emails
+      - "1025:1025"   # Puerto SMTP que el backend usa para enviar
+    networks:
+      - nn_auth_network
+
+# =============================================================================
+# REDES
+# ¿Qué? Red interna aislada para la comunicación entre contenedores.
+# ¿Para qué? Los contenedores se comunican por nombre (ej: 'db', 'mailpit')
+#            sin exponer puertos internos al host.
+# =============================================================================
+networks:
+  nn_auth_network:
+    driver: bridge
+
+# =============================================================================
+# VOLÚMENES
+# ¿Qué? Almacenamiento persistente para los datos de PostgreSQL.
+# ¿Para qué? Que los datos de la BD sobrevivan al reinicio del contenedor.
+# ¿Impacto? Sin volumen, cada `docker compose down` borraría todos los datos.
+# =============================================================================
+volumes:
+  nn_auth_data:

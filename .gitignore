@@ -1,0 +1,153 @@
+# =============================================================================
+# .gitignore — NN Auth System (Kotlin Edition)
+# ¿Qué? Lista de archivos y carpetas que Git debe ignorar.
+# ¿Para qué? Evitar versionar artefactos de build, credenciales, dependencias
+#            y archivos temporales que no aportan valor al repositorio.
+# ¿Impacto? Sin este archivo, secretos (.env), JARs y node_modules podrían
+#           subirse al repo, comprometiendo la seguridad y el tamaño del repo.
+# =============================================================================
+
+# =============================================================================
+# VARIABLES DE ENTORNO — NUNCA versionarlas
+# =============================================================================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# =============================================================================
+# KOTLIN / JVM — Artefactos de compilación
+# =============================================================================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# Carpetas de build
+build/
+out/
+target/
+
+# =============================================================================
+# GRADLE — Caché y wrapper descargado
+# =============================================================================
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Carpeta de caché local de Gradle
+local.properties
+
+# =============================================================================
+# SPRING BOOT — Archivos de configuración locales
+# =============================================================================
+application-local.yml
+application-local.yaml
+application-local.properties
+
+# Logs de Spring Boot
+*.log
+logs/
+spring.log
+
+# =============================================================================
+# NODE.JS / REACT / VITE — Dependencias y builds
+# =============================================================================
+node_modules/
+dist/
+dist-ssr/
+.vite/
+
+# Cache de pnpm
+.pnpm-store/
+.pnpm-debug.log*
+
+# Cache de herramientas de build
+.cache/
+
+# =============================================================================
+# TESTING — Reportes y coverage
+# =============================================================================
+# Backend (JaCoCo)
+be/build/reports/
+be/build/test-results/
+*.exec
+
+# Frontend (Vitest)
+coverage/
+.nyc_output/
+
+# =============================================================================
+# IDEs y EDITORES
+# =============================================================================
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iws
+*.iml
+*.ipr
+*.orig
+
+# VS Code — solo ignorar settings personales, NO extensions.json
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# =============================================================================
+# SISTEMA OPERATIVO
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# =============================================================================
+# DOCKER — No ignorar docker-compose.yml (es parte del proyecto)
+# =============================================================================
+docker-compose.override.yml
+
+# =============================================================================
+# MISCELÁNEOS
+# =============================================================================
+
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Archivos de crash
+hs_err_pid*
+replay_pid*
