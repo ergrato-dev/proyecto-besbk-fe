@@ -1,4 +1,6 @@
-# 🔐 NN Auth System — Kotlin Edition
+<div align="center">
+  <img src="assets/banner.svg" alt="NN Auth System — Kotlin Edition" width="100%"/>
+</div>
 
 > Proyecto educativo — SENA | Marzo 2026
 

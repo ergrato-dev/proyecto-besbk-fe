@@ -1,0 +1,64 @@
+<svg width="1280" height="260" viewBox="0 0 1280 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <rect width="1280" height="260" fill="#0a0a0a"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="4" height="260" fill="#c026d3"/>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="257" width="1280" height="3" fill="#c026d3"/>
+
+  <!-- Top-right corner bracket -->
+  <path d="M 1252 40 L 1252 24 L 1236 24" stroke="#c026d3" stroke-width="2" stroke-linecap="square"/>
+
+  <!-- NN Badge: border -->
+  <rect x="44" y="63" width="90" height="90" stroke="#c026d3" stroke-width="1.5"/>
+  <!-- NN Badge: corner fills -->
+  <rect x="44"  y="63"  width="9" height="9" fill="#c026d3"/>
+  <rect x="125" y="63"  width="9" height="9" fill="#c026d3"/>
+  <rect x="44"  y="144" width="9" height="9" fill="#c026d3"/>
+  <rect x="125" y="144" width="9" height="9" fill="#c026d3"/>
+  <!-- NN Badge: text -->
+  <text
+    x="89" y="108"
+    text-anchor="middle" dominant-baseline="middle"
+    font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
+    font-size="36" font-weight="800" fill="#c026d3" letter-spacing="-1">NN</text>
+
+  <!-- Title -->
+  <text
+    x="168" y="118"
+    font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
+    font-size="60" font-weight="800" fill="#ffffff" letter-spacing="-2">Auth System</text>
+
+  <!-- Subtitle -->
+  <text
+    x="170" y="162"
+    font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
+    font-size="18" font-weight="500" fill="#c026d3" letter-spacing="6">KOTLIN EDITION</text>
+
+  <!-- Separator -->
+  <rect x="168" y="182" width="680" height="1" fill="#1e1e1e"/>
+
+  <!-- Tech stack -->
+  <text
+    x="168" y="216"
+    font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
+    font-size="13" fill="#374151" letter-spacing="1">SPRING BOOT 3  ·  JDK 21  ·  REACT 18  ·  POSTGRESQL 17  ·  JWT  ·  DOCKER</text>
+
+  <!-- Right decoration: Kotlin-inspired concentric diamonds -->
+  <polygon points="1100,18  1212,130  1100,242  988,130"  stroke="#c026d3" stroke-width="1.5"/>
+  <polygon points="1100,52  1178,130  1100,208  1022,130" stroke="#c026d3" stroke-width="1"   opacity="0.5"/>
+  <polygon points="1100,82  1148,130  1100,178  1052,130" stroke="#c026d3" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Diamond center dot -->
+  <circle cx="1100" cy="130" r="5" fill="#c026d3"/>
+
+  <!-- Diamond corner dots -->
+  <circle cx="1100" cy="18"  r="2.5" fill="#c026d3"/>
+  <circle cx="1212" cy="130" r="2.5" fill="#c026d3"/>
+  <circle cx="1100" cy="242" r="2.5" fill="#c026d3"/>
+  <circle cx="988"  cy="130" r="2.5" fill="#c026d3"/>
+
+</svg>
