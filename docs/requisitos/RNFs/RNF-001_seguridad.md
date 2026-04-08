@@ -103,4 +103,4 @@
 | A05 Security Misconfiguration               | CORS explícito, variables de entorno          |
 | A07 Identification and Authentication Failures | Rate limiting + JWT de corta duración      |
 
-> Ver detalles completos en `_docs/conceptos/owasp-top-10.md`.
+> Ver detalles completos en `docs/conceptos/owasp-top-10.md`.

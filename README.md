@@ -273,7 +273,7 @@ proyecto-besbk-fe/
 ├── .gitignore                          # Archivos ignorados por git
 ├── docker-compose.yml                  # Todos los servicios: PostgreSQL, BE, FE, Mailpit
 ├── README.md                           # ← Este archivo
-├── _docs/                              # Documentación técnica
+├── docs/                              # Documentación técnica
 │   ├── referencia-tecnica/
 │   │   ├── architecture.md             # Arquitectura general, flujos y decisiones técnicas
 │   │   ├── api-endpoints.md            # Todos los endpoints con parámetros y respuestas
@@ -340,11 +340,11 @@ Para las reglas completas, ver [.github/copilot-instructions.md](.github/copilot
 
 | Archivo | Contenido |
 |---|---|
-| [_docs/referencia-tecnica/architecture.md](_docs/referencia-tecnica/architecture.md) | Arquitectura general, flujos y decisiones técnicas |
-| [_docs/referencia-tecnica/api-endpoints.md](_docs/referencia-tecnica/api-endpoints.md) | Todos los endpoints con parámetros, respuestas y errores |
-| [_docs/referencia-tecnica/database-schema.md](_docs/referencia-tecnica/database-schema.md) | Esquema ER, tablas, columnas y migraciones Flyway |
-| [_docs/conceptos/owasp-top-10.md](_docs/conceptos/owasp-top-10.md) | Implementación del OWASP Top 10 2021 con Spring Security |
-| [_docs/conceptos/accesibilidad-aria-wcag.md](_docs/conceptos/accesibilidad-aria-wcag.md) | Estándares ARIA/WCAG 2.1 AA aplicados en el frontend |
+| [docs/referencia-tecnica/architecture.md](docs/referencia-tecnica/architecture.md) | Arquitectura general, flujos y decisiones técnicas |
+| [docs/referencia-tecnica/api-endpoints.md](docs/referencia-tecnica/api-endpoints.md) | Todos los endpoints con parámetros, respuestas y errores |
+| [docs/referencia-tecnica/database-schema.md](docs/referencia-tecnica/database-schema.md) | Esquema ER, tablas, columnas y migraciones Flyway |
+| [docs/conceptos/owasp-top-10.md](docs/conceptos/owasp-top-10.md) | Implementación del OWASP Top 10 2021 con Spring Security |
+| [docs/conceptos/accesibilidad-aria-wcag.md](docs/conceptos/accesibilidad-aria-wcag.md) | Estándares ARIA/WCAG 2.1 AA aplicados en el frontend |
 | [.github/copilot-instructions.md](.github/copilot-instructions.md) | Reglas y convenciones del proyecto |
 
 ---

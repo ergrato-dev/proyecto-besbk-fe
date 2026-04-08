@@ -97,4 +97,4 @@ Los campos de formulario deben declarar el atributo `autocomplete` adecuado:
 | WebAIM Checker    | Web                 | Verificación de contraste de color   |
 | Lighthouse        | Chrome DevTools     | Auditoría general de accesibilidad   |
 
-> Ver guía completa en `_docs/conceptos/accesibilidad-aria-wcag.md`.
+> Ver guía completa en `docs/conceptos/accesibilidad-aria-wcag.md`.

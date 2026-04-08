@@ -49,7 +49,7 @@ El cuerpo (`For:` / `Impact:`) puede estar en inglés o español.
 | `config`   | application.yml, build.gradle.kts, Docker, configuración  |
 | `test`     | Tests unitarios e integración (JUnit 5, MockMvc)          |
 | `deps`     | Dependencias (build.gradle.kts, package.json)             |
-| `docs`     | Documentación (README, `_docs/`)                          |
+| `docs`     | Documentación (README, `docs/`)                          |
 
 ## Ejemplos del proyecto
 

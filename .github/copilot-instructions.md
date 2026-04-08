@@ -246,7 +246,7 @@ proyecto-besbk-fe/                     # Raíz del monorepo
 ├── docker-compose.yml                 # Servicios: PostgreSQL, BE, FE, Mailpit
 ├── README.md                          # Documentación principal del proyecto
 │
-├── _docs/                             # 📚 Documentación del proyecto
+├── docs/                             # 📚 Documentación del proyecto
 │   ├── referencia-tecnica/
 │   │   ├── architecture.md            # Arquitectura general y diagramas
 │   │   ├── api-endpoints.md           # Documentación de todos los endpoints
@@ -1013,7 +1013,7 @@ Los componentes React **NUNCA** usan colores hardcodeados — siempre el token `
 | Borde del badge      | `stroke="#c026d3"`    | fuchsia-600 |
 | Trazos de la letra   | `stroke="#e879f9"`    | fuchsia-400 |
 
-> Ver `_docs/referencia-tecnica/design-system.md` para el sistema completo de tokens,
+> Ver `docs/referencia-tecnica/design-system.md` para el sistema completo de tokens,
 > instrucciones de clonación y verificación visual.
 
 ---
@@ -1144,9 +1144,9 @@ Los componentes React **NUNCA** usan colores hardcodeados — siempre el token `
 
 ### Fase 11 — Documentación Final
 
-- [ ] Revisar y completar `_docs/referencia-tecnica/architecture.md`
-- [ ] Revisar y completar `_docs/referencia-tecnica/api-endpoints.md`
-- [ ] Revisar y completar `_docs/referencia-tecnica/database-schema.md`
+- [ ] Revisar y completar `docs/referencia-tecnica/architecture.md`
+- [ ] Revisar y completar `docs/referencia-tecnica/api-endpoints.md`
+- [ ] Revisar y completar `docs/referencia-tecnica/database-schema.md`
 - [ ] Actualizar `README.md` con instrucciones finales verificadas
 - [ ] ✅ Verificar: documentación completa y coherente
 
